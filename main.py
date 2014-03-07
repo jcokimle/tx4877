@@ -104,13 +104,19 @@ def pm1_pollard( n ,  b, it = 10 ):
             a = square_pow(a, int(pow(q, e)), n)
         g = gcd( a-1, n )
         if 1 < g < n:
+            print('Factorisation réussie : {}'.format(g))
             return g
         if g == 1 :
-            print('G = 1')
+            # g = 1 -> augmentation du seuil et changement de a
+            b += 1
+            print('Echec factorisation, augmentation du seuil B ({})'.format(b))
             continue
         if g == n:
-            print('G = n')
+            # g = n -> nouvel essai avec changement de a
+            print('Echec factorisation')
             continue
+    
+    print("Nombre d'itération max atteint. Echec de la factorisation")
     return 0
     
 # =====================================================================================
