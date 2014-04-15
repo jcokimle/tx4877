@@ -57,7 +57,7 @@ def miller_rabin(n, k=10):
         s //= 2
     for _ in range(k):
         a = randrange(2, n - 1)
-        x = square_pow(a, s, n)
+        x = pow(a, s, n)
         if x == 1 or x == n - 1:
             continue
         for _ in range(r - 1):
