@@ -86,8 +86,8 @@ class Core :
                 x = pow(x, 2, n)
                 if x == n - 1:
                     break
-            else:
-                return False
+                else:
+                    return False
         return True
 
     def pm1_pollard( self, n ,  b, it = 10 ):
