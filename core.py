@@ -78,6 +78,7 @@ class Core :
             r += 1
             s //= 2
         for _ in range(k):
+            print(n)
             a = randrange(2, n - 1)
             x = pow(a, s, n)
             if x == 1 or x == n - 1:

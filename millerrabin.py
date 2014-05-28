@@ -14,9 +14,15 @@ class MillerRabin(object):
         self.it = k
         self.is_prime = False
         self.is_over = False
-        if n < 2:
-            self.is_over = True
         self.r, self.s = 0, self.n - 1
+        self.step_by_step = False
+        if n < 2 or n % 2 == 0:
+            self.is_over = True
+            return
+        if n < 6:
+            self.is_over = True
+            self.is_prime = [False, False, True, True, False, True][n]
+            return
         while self.s % 2 == 0:
             self.r += 1
             self.s //= 2
@@ -27,11 +33,12 @@ class MillerRabin(object):
         
 
     def step(self):
+        if not self.step_by_step:
+            self.step_by_step = True
+        if self.is_over:
+            self.step_by_step = False
         if self.it and not self.is_over:
             self.it -= 1
-            if self.n % 2 == 0:
-                self.is_over = True
-                return
             self.a = randrange(2, self.n - 1)
             self.x = pow(self.a, self.s, self.n)
             if self.x == 1 or self.x == self.n - 1:

@@ -11,8 +11,11 @@ class PrimeGen(object):
 
     def initialize(self, size):
         self.size = size
+        self.bot = 10 ** (size - 1)
+        self.top = (10 ** size) - 1
         self.cand = 0
         self.is_prime = False
+        self.step_by_step = False
         self.not_prime = []
 
     def run(self):
@@ -20,19 +23,18 @@ class PrimeGen(object):
             self.step()
 
     def step(self):
-        size = self.size
-        # définition des limites f(size)
-        bot = 10 ** (size - 1)
-        top = (10 ** size) - 1
+        self.step_by_step = True
+        bot = self.bot
+        top = self.top
 
         self.cand = randint(bot,  top)
         # génération d'un nombre impair dans les limites
         while ((self.cand % 2) == 0 or self.cand in self.not_prime):
             self.cand = randint(bot,  top)
         
-        self.mr.initialize(self.cand,5)
-        self.mr.run()
         #test de primalité
+        self.mr.initialize(self.cand,3)
+        self.mr.run()
         self.is_prime = self.mr.is_prime
         if not self.is_prime:
             self.not_prime.append(self.cand)
@@ -45,9 +47,9 @@ class PrimeGen(object):
 
 if __name__ == "__main__":
     pm = PrimeGen()
-    pm.initialize(6)
+    pm.initialize(1)
     pm.run()
     while pm.cand != 126739:
-        pm.initialize(6)
+        pm.initialize(1)
         pm.run()
     print(pm.get_state())

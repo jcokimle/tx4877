@@ -16,20 +16,15 @@ class Pm1Pollard(object):
         self.it = it
         self.a = 0
         self.g = 0
-        self.is_prime = False
         self.is_over = False
-        if n < 2:
-            self.is_over = True
-        self.r, self.s = 0, self.n - 1
-        while self.s % 2 == 0:
-            self.r += 1
-            self.s //= 2
+        self.step_by_step = False
 
     def run(self):
         while not self.is_over:
             self.step()
 
     def step(self):
+        self.step_by_step = True
         if self.it and not self.is_over:
             self.it -=1
             n = self.n
