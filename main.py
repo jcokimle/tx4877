@@ -42,19 +42,22 @@ class MainWindow(QMainWindow):
         dial.exec()
 
     def run_mr(self):
+        self.reset_mr()
         if not self.mr.step_by_step:
             self.mr.initialize(int(self.ui.txt_mr_n.text()), int(self.ui.txt_mr_k.text()))
         self.mr.run()
+        self.add_log(self.mr.log_msg)
         if self.mr.is_prime:
             self.ui.txt_mr_res.setText("Prime")
         else:
             self.ui.txt_mr_res.setText("Not prime")
-        self.ui.txt_mr_exec.appendPlainText(self.mr.get_state())
 
     def step_mr(self):
         if not self.mr.step_by_step:
+            self.reset_mr()
             self.mr.initialize(int(self.ui.txt_mr_n.text()), int(self.ui.txt_mr_k.text()))
         self.mr.step()
+        self.add_log(self.mr.log_msg)
         if self.mr.is_over:
             if self.mr.is_prime:
                 self.ui.txt_mr_res.setText("Prime")
@@ -62,11 +65,11 @@ class MainWindow(QMainWindow):
                 self.ui.txt_mr_res.setText("Not prime")
         else:
             self.ui.txt_mr_res.setText("")
-        self.ui.txt_mr_exec.appendPlainText(self.mr.get_state())
 
     def reset_mr(self):
         self.ui.txt_mr_exec.setPlainText("")
         self.ui.txt_mr_res.setText("")
+        self.mr.step_by_step = False
 
     def run_pm(self):
         self.pm.initialize(int(self.ui.txt_pm_n.text()), int(self.ui.txt_pm_b.text()), int(self.ui.txt_pm_it.text()))
@@ -80,6 +83,10 @@ class MainWindow(QMainWindow):
         self.pg.initialize(int(self.ui.txt_pg_size.text()))
         self.pg.run()
         self.ui.txt_pg_res.setText(str(self.pg.cand))
+
+    def add_log(self, log):
+        self.ui.txt_mr_exec.setPlainText(log)
+        self.ui.txt_mr_exec.verticalScrollBar().setSliderPosition(self.ui.txt_mr_exec.verticalScrollBar().maximum())
 
 if __name__=="__main__":
     app = QApplication(sys.argv)
