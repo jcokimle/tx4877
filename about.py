@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'about.ui'
 #
-# Created: Wed May 28 12:25:01 2014
+# Created: Mon Jun  2 14:05:19 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,16 +26,26 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(214, 145)
-        self.label = QtGui.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 10, 121, 41))
-        self.label.setObjectName(_fromUtf8("label"))
-        self.pushButton = QtGui.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(110, 110, 75, 23))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        Dialog.resize(250, 142)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
+        Dialog.setMinimumSize(QtCore.QSize(250, 142))
+        Dialog.setMaximumSize(QtCore.QSize(250, 149))
+        self.gridLayout = QtGui.QGridLayout(Dialog)
+        self.gridLayout.setHorizontalSpacing(100)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label_2 = QtGui.QLabel(Dialog)
-        self.label_2.setGeometry(QtCore.QRect(20, 60, 121, 31))
         self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
+        self.pushButton = QtGui.QPushButton(Dialog)
+        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.gridLayout.addWidget(self.pushButton, 2, 1, 1, 1)
+        self.label = QtGui.QLabel(Dialog)
+        self.label.setObjectName(_fromUtf8("label"))
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 2)
 
         self.retranslateUi(Dialog)
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(_fromUtf8("clicked()")), Dialog.close)
@@ -43,7 +53,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "A propos", None))
-        self.label.setText(_translate("Dialog", "Auteurs: Emile Caron et Jérémy Co Kim Len", None))
-        self.pushButton.setText(_translate("Dialog", "OK", None))
         self.label_2.setText(_translate("Dialog", "Version 0.1", None))
+        self.pushButton.setText(_translate("Dialog", "OK", None))
+        self.label.setText(_translate("Dialog", "Auteurs: Emile Caron et Jérémy Co Kim Len", None))
 

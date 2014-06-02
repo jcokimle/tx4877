@@ -11,38 +11,61 @@ class Pm1Pollard(object):
         self.initialize(n, b, it)
 
     def initialize(self, n, b, it):
+        self.log_msg = ""
         self.n = n
         self.b = b
         self.it = it
+        self.cpt = 1
         self.a = 0
         self.g = 0
         self.is_over = False
         self.step_by_step = False
+        self.log("Running Pm1 Pollard: N = %d, B = %d, it = %d" % (self.n, self.b, self.it))
 
     def run(self):
         while not self.is_over:
             self.step()
 
     def step(self):
-        self.step_by_step = True
+        if not self.step_by_step and not self.is_over:
+            self.step_by_step = True
         if self.it and not self.is_over:
+            offset = 10
+            self.log("Iteration %d" % (self.cpt), offset)
+            self.cpt += 1
             self.it -=1
             n = self.n
             b = self.b
             self.a = randint(1, n)
-            for q in primes(b) : 
+            self.log("Random A between 1 and %d: A = %d" % (self.n, self.a), offset * 2)
+            b_primes = primes(b)
+            self.log("B = %d, computing B- primes: %s" % (self.b, b_primes), offset * 2)
+            if len(b_primes) > 0:
+                self.log("Start for loop", offset * 2)
+            for q in b_primes :
+                self.log("Q = %d" %(q), offset * 3) 
                 e = abs((log(b)) / (log(q)))
+                self.log("Ln(b) / Ln(q): E = %d" % (e), offset * 3)
                 self.a = pow(self.a, int(pow(q, e)), n)
+                self.log("Modular exponentiation A ^ Q ^ E %% N: A = %d" % (self.a), offset * 3)
             self.g = gcd(self.a - 1, n)
+            self.log("Greatest Common Divisor between %d and %d: G = %d" % (self.a - 1, self.n, self.g), offset * 2)
             if 1 < self.g < n:
                 self.is_over = True
-                print('Factorisation réussie : {}'.format(self.g))
+                self.step_by_step = False
+                self.log("Successful factorization: %d" % (self.g))
             if self.g == 1 :
-                # g = 1 -> augmentation du seuil et changement de a
-                b += 1
+                self.b += 1
+                self.log("G = 1 => Incrementing B and changing A", offset * 2)
         elif not self.it and not self.is_over:
             self.is_over = True
-            print("Nombre d'itération max atteint. Echec de la factorisation")
+            self.step_by_step = False
+            self.log("End of iterations, factorization failed")
+
+    def log(self, msg, offset=0):
+        for _ in range(offset):
+            self.log_msg = self.log_msg + " "
+        self.log_msg = self.log_msg + msg + "\n"
 
     def get_state(self):
         return "It: %d - N: %d - B: %d - A: %d - G: %d - Is Over: %d" % (self.it, self.n, self.b, self.a, self.g, self.is_over)

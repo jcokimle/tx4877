@@ -34,6 +34,7 @@ class MillerRabin(object):
         while self.s % 2 == 0:
             self.r += 1
             self.s //= 2
+        self.log("R = %d, S = %d" %(self.r, self.s))
 
     def run(self):
         while not self.is_over:
@@ -44,34 +45,33 @@ class MillerRabin(object):
         if not self.step_by_step and not self.is_over:
             self.step_by_step = True
         if self.it and not self.is_over:
-            offset = 4
+            offset = 10
             self.log("Iteration %d" % (self.cpt), offset)
             self.it -= 1
             self.cpt += 1
             self.a = randrange(2, self.n - 1)
+            self.log("Random A between 2 and %d: A = %d" % (self.n - 2, self.a), offset * 2)
             self.x = pow(self.a, self.s, self.n)
-            self.log("A = %d, X = %d" % (self.a, self.x), offset)
+            self.log("Modular exponentiation: X = A ^ S %% N = %d" % (self.x), offset * 2)
             if self.x == 1 or self.x == self.n - 1:
-                self.log("X = 1 or X = N - 1 => Return", offset)
+                self.log("X = 1 or X = N - 1 => Changing A", offset * 2)
                 return
             if self.r - 1 > 0:
-                self.log("Starting for loop", offset)
+                self.log("Starting for loop", offset * 2)
             for _ in range(self.r - 1):
                 self.x = pow(self.x, 2, self.n)
-                self.log("X^2 mod N=%d" % (self.x), offset * 2)
+                self.log("Modular exponentiation: X = X ^ 2 %% N = %d" % (self.x), offset * 3)
                 if self.x == 1:
-                    self.log("X = 1 => Prime", offset)
+                    self.log("X = 1 => Composite", offset * 3)
                     self.is_over = True
                     self.step_by_step = False
                     return
                 if self.x == self.n - 1:
-                    self.log("X = N - 1 => Keep going", offset)
-                    self.a = 0
+                    self.log("X = N - 1 => Changing A", offset * 3)
                     return
-            if self.a:
-                self.log("A != 0 => Not Prime")
-                self.is_over = True
-                self.step_by_step = False
+            self.log("Reached end of for loop => Composite")
+            self.is_over = True
+            self.step_by_step = False
         elif not self.it and not self.is_over:
             self.log("End of iterations => Prime")
             self.is_over = True
