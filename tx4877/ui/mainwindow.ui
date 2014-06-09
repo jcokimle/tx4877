@@ -220,9 +220,6 @@
          </layout>
         </item>
        </layout>
-       <zorder>verticalLayoutWidget_2</zorder>
-       <zorder>formLayoutWidget</zorder>
-       <zorder>txt_mr_exec</zorder>
       </widget>
       <widget class="QWidget" name="tab_2">
        <property name="sizePolicy">
@@ -572,13 +569,13 @@
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="title">
-     <string>Fichier</string>
+     <string>File</string>
     </property>
     <addaction name="actionQuitter"/>
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Aide</string>
+     <string>Help</string>
     </property>
     <addaction name="actionA_propos"/>
    </widget>
@@ -588,12 +585,12 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuitter">
    <property name="text">
-    <string>Quitter</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="actionA_propos">
    <property name="text">
-    <string>A propos</string>
+    <string>About</string>
    </property>
   </action>
  </widget>

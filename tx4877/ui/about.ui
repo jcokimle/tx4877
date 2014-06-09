@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>A propos</string>
+   <string>About</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="horizontalSpacing">
@@ -52,7 +52,7 @@
    <item row="0" column="0" colspan="2">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Auteurs: Emile Caron et Jérémy Co Kim Len</string>
+      <string>Authors: Emile Caron and Jérémy Co Kim Len</string>
      </property>
     </widget>
    </item>

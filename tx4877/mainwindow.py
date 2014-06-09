@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created: Mon Jun  2 14:06:34 2014
+# Created: Mon Jun  9 10:21:43 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -375,8 +375,8 @@ class Ui_MainWindow(object):
         self.btn_pg_step.setText(_translate("MainWindow", "Step", None))
         self.btn_pg_reset.setText(_translate("MainWindow", "Reset", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Prime Gen", None))
-        self.menuFichier.setTitle(_translate("MainWindow", "Fichier", None))
-        self.menu.setTitle(_translate("MainWindow", "Aide", None))
-        self.actionQuitter.setText(_translate("MainWindow", "Quitter", None))
-        self.actionA_propos.setText(_translate("MainWindow", "A propos", None))
+        self.menuFichier.setTitle(_translate("MainWindow", "File", None))
+        self.menu.setTitle(_translate("MainWindow", "Help", None))
+        self.actionQuitter.setText(_translate("MainWindow", "Exit", None))
+        self.actionA_propos.setText(_translate("MainWindow", "About", None))
 

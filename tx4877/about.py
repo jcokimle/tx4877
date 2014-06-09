@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'about.ui'
 #
-# Created: Mon Jun  2 14:05:19 2014
+# Created: Mon Jun  9 10:21:33 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,8 +52,8 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "A propos", None))
+        Dialog.setWindowTitle(_translate("Dialog", "About", None))
         self.label_2.setText(_translate("Dialog", "Version 0.1", None))
         self.pushButton.setText(_translate("Dialog", "OK", None))
-        self.label.setText(_translate("Dialog", "Auteurs: Emile Caron et Jérémy Co Kim Len", None))
+        self.label.setText(_translate("Dialog", "Authors: Emile Caron and Jérémy Co Kim Len", None))
 
