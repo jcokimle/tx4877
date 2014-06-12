@@ -1,6 +1,7 @@
 from fractions import gcd
 from math import log
 from random import randint
+import time
 
 from utils import primes
 
@@ -11,6 +12,9 @@ class Pm1Pollard(object):
         self.initialize(n, b, it)
 
     def initialize(self, n, b, it):
+        '''
+        Initializes the variables
+        '''
         self.log_msg = ""
         self.n = n
         self.b = b
@@ -23,12 +27,20 @@ class Pm1Pollard(object):
         self.log("Running Pm1 Pollard: N = %d, B = %d, it = %d" % (self.n, self.b, self.it))
 
     def run(self):
+        '''
+        Iterates until the end of the algorithm
+        '''
         while not self.is_over:
             self.step()
 
     def step(self):
+        '''
+        Computes only 1 iteration
+        Adds logs at each step
+        '''
         if not self.step_by_step and not self.is_over:
             self.step_by_step = True
+            self.start_time = time.time()
         if self.it and not self.is_over:
             offset = 10
             self.log("Iteration %d" % (self.cpt), offset)
@@ -54,6 +66,7 @@ class Pm1Pollard(object):
                 self.is_over = True
                 self.step_by_step = False
                 self.log("Successful factorization: %d" % (self.g))
+                self.log("Duration: %fs" % (time.time() - self.start_time))
             if self.g == 1 :
                 self.b += 1
                 self.log("G = 1 => Incrementing B and changing A", offset * 2)
@@ -61,15 +74,23 @@ class Pm1Pollard(object):
             self.is_over = True
             self.step_by_step = False
             self.log("End of iterations, factorization failed")
+            self.log("Duration: %fs" % (time.time() - self.start_time))
 
     def log(self, msg, offset=0):
+        '''
+        Logs a message
+        '''
         for _ in range(offset):
             self.log_msg = self.log_msg + " "
         self.log_msg = self.log_msg + msg + "\n"
 
     def get_state(self):
+        '''
+        Retuns the current state with all the variables
+        '''
         return "It: %d - N: %d - B: %d - A: %d - G: %d - Is Over: %d" % (self.it, self.n, self.b, self.a, self.g, self.is_over)
 
+''' Testing the algorithm '''
 if __name__ == "__main__":
     pm = Pm1Pollard()
     pm.initialize(4037391011150378392273634800292119677851, 1, 100000)

@@ -1,4 +1,5 @@
 from random import randrange
+import time
 
 
 class MillerRabin(object):
@@ -7,6 +8,9 @@ class MillerRabin(object):
         self.initialize(n, k)
 
     def initialize(self, n, k):
+        '''
+        Initializes the variables
+        '''
         self.log_msg = ""
         self.n = n
         self.k = k
@@ -37,13 +41,21 @@ class MillerRabin(object):
         self.log("R = %d, S = %d" %(self.r, self.s))
 
     def run(self):
+        '''
+        Iterates until the end of the algorithm
+        '''
         while not self.is_over:
             self.step()
         
 
     def step(self):
+        '''
+        Computes only 1 iteration
+        Adds logs at each step
+        '''
         if not self.step_by_step and not self.is_over:
             self.step_by_step = True
+            self.start_time = time.time()
         if self.it and not self.is_over:
             offset = 10
             self.log("Iteration %d" % (self.cpt), offset)
@@ -65,6 +77,7 @@ class MillerRabin(object):
                     self.log("X = 1 => Composite", offset * 3)
                     self.is_over = True
                     self.step_by_step = False
+                    self.log("Duration: %fs" % (time.time() - self.start_time))
                     return
                 if self.x == self.n - 1:
                     self.log("X = N - 1 => Changing A", offset * 3)
@@ -77,15 +90,23 @@ class MillerRabin(object):
             self.is_over = True
             self.is_prime = True
             self.step_by_step = False
+        self.log("Duration: %fs" % (time.time() - self.start_time))
 
     def log(self, msg, offset=0):
+        '''
+        Logs a message
+        '''
         for _ in range(offset):
             self.log_msg = self.log_msg + " "
         self.log_msg = self.log_msg + msg + "\n"
 
     def get_state(self):
+        '''
+        Retuns the current state with all the variables
+        '''
         return "It: %d - N: %d - K: %d - A: %d - X: %d - S: %d - R: %d - Is Prime: %d - Is Over: %d" % (self.it, self.n, self.k, self.a, self.x, self.s, self.r, self.is_prime, self.is_over)
 
+''' Testing the algorithm '''
 if __name__ == "__main__":
     mr = MillerRabin()
     mr.initialize(4037391011150378392273634800292119677851, 100)

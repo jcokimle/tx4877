@@ -1,5 +1,6 @@
 
 from random import randint
+import time
 
 from millerrabin import MillerRabin
 
@@ -11,6 +12,9 @@ class PrimeGen(object):
         self.initialize(size)
 
     def initialize(self, size):
+        '''
+        Initializes the variables
+        '''
         self.log_msg = ""
         self.size = size
         self.bot = 10 ** (size - 1)
@@ -25,12 +29,20 @@ class PrimeGen(object):
         self.log("Running Prime Gen: Size = %d" % (self.size))
 
     def run(self):
+        '''
+        Iterates until the end of the algorithm
+        '''
         while not self.is_prime:
             self.step()
 
     def step(self):
+        '''
+        Computes only 1 iteration
+        Adds logs at each step
+        '''
         if not self.step_by_step and not self.is_over:
             self.step_by_step = True
+            self.start_time = time.time()
         if not self.is_over:
             bot = self.bot
             top = self.top
@@ -56,18 +68,26 @@ class PrimeGen(object):
                 self.step_by_step = False
                 self.is_over = True
                 self.log("%d is Prime => End" % (self.cand), offset * 2)
+                self.log("Duration: %fs" % (time.time() - self.start_time))
             elif not self.is_prime:
                 self.log("%d is Composite => Continue" % (self.cand), offset * 2)
                 self.not_primes.append(self.cand)
 
     def log(self, msg, offset=0):
+        '''
+        Logs a message
+        '''
         for _ in range(offset):
             self.log_msg = self.log_msg + " "
         self.log_msg = self.log_msg + msg + "\n"
 
     def get_state(self):
+        '''
+        Retuns the current state with all the variables
+        '''
         return "Size: %d - Number: %d - Prime: %d" % (self.size, self.cand, self.is_prime)
 
+''' Testing the algorithm '''
 if __name__ == "__main__":
     pm = PrimeGen()
     pm.initialize(1)

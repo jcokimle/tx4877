@@ -49,8 +49,8 @@ class MainWindow(QMainWindow):
 
     ''' Miller Rabin '''
     def run_mr(self):
-        self.reset_mr()
         if not self.mr.step_by_step:
+            self.reset_mr()
             self.mr.initialize(int(self.ui.txt_mr_n.text()), int(self.ui.txt_mr_k.text()))
         self.mr.run()
         self.add_log_mr(self.mr.log_msg)
@@ -80,8 +80,8 @@ class MainWindow(QMainWindow):
 
     ''' Pm1 Pollard '''
     def run_pm(self):
-        self.reset_pm()
         if not self.pm.step_by_step:
+            self.reset_pm()
             self.pm.initialize(int(self.ui.txt_pm_n.text()), int(self.ui.txt_pm_b.text()), int(self.ui.txt_pm_it.text()))
         self.pm.run()
         self.add_log_pm(self.pm.log_msg)
@@ -111,8 +111,8 @@ class MainWindow(QMainWindow):
 
     ''' Prime Gen '''
     def run_pg(self):
-        self.reset_pg()
         if not self.pg.step_by_step:
+            self.reset_pg()
             self.pg.initialize(int(self.ui.txt_pg_size.text()))
         self.pg.run()
         self.add_log_pg(self.pg.log_msg)
@@ -135,15 +135,15 @@ class MainWindow(QMainWindow):
         self.pg.step_by_step = False
 
     def add_log_mr(self, log):
-        self.add_log(log, self.ui.txt_mr_exec)
+        self._add_log(log, self.ui.txt_mr_exec)
 
     def add_log_pm(self, log):
-        self.add_log(log, self.ui.txt_pm_exec)
+        self._add_log(log, self.ui.txt_pm_exec)
 
     def add_log_pg(self, log):
-        self.add_log(log, self.ui.txt_pg_exec)
+        self._add_log(log, self.ui.txt_pg_exec)
 
-    def add_log(self, log, txt_wdgt):
+    def _add_log(self, log, txt_wdgt):
         txt_wdgt.setPlainText(log)
         txt_wdgt.verticalScrollBar().setSliderPosition(txt_wdgt.verticalScrollBar().maximum())
 
