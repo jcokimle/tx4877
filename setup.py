@@ -20,5 +20,5 @@ setup(
           "PyQt4",
     ],
     options = {"build_exe": build_exe_options},
-    executables = [Executable("main.py", base=base)],
+    executables = [Executable("tx4877/main.py", base=base)],
 )
