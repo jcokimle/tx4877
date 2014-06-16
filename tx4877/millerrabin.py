@@ -90,7 +90,10 @@ class MillerRabin(object):
             self.is_over = True
             self.is_prime = True
             self.step_by_step = False
-        self.log("Duration: %fs" % (time.time() - self.start_time))
+        if hasattr(self, 'start_time'):
+            self.log("Duration: %fs" % (time.time() - self.start_time))
+        else:
+            self.log("Duration: 0s")
 
     def log(self, msg, offset=0):
         '''
