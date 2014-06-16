@@ -3,7 +3,7 @@ from math import log
 from random import randint
 import time
 
-from utils import primes
+from tx4877.utils import primes
 
 
 class Pm1Pollard(object):

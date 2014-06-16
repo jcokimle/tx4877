@@ -2,7 +2,7 @@
 from random import randint
 import time
 
-from millerrabin import MillerRabin
+from tx4877.millerrabin import MillerRabin
 
 
 class PrimeGen(object):

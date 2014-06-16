@@ -3,11 +3,11 @@ import sys
 from PyQt4 import QtCore
 from PyQt4.QtGui import QApplication, QMainWindow, QDialog
 
-from about import Ui_Dialog
-from mainwindow import Ui_MainWindow
-from millerrabin import MillerRabin
-from pm1pollard import Pm1Pollard
-from primegen import PrimeGen
+from tx4877.about import Ui_Dialog
+from tx4877.mainwindow import Ui_MainWindow
+from tx4877.millerrabin import MillerRabin
+from tx4877.pm1pollard import Pm1Pollard
+from tx4877.primegen import PrimeGen
 
 
 try:
