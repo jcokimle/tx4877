@@ -10,7 +10,7 @@ from tx4877.millerrabin import MillerRabin
 from tx4877.utils import square_pow, primes
 
 
-class SquarePow_Test(unittest.TestCase):
+class TestSquarePow(unittest.TestCase):
     
     def test_RandomValue(self):
         """
@@ -26,7 +26,7 @@ class SquarePow_Test(unittest.TestCase):
 
             
 
-class MillerRabin_Test(unittest.TestCase):
+class TestMillerRabin(unittest.TestCase):
     """
     !!! MillerRabin is a probabilistic test which means that it can sometimes fail !!!
     """
@@ -68,7 +68,7 @@ class MillerRabin_Test(unittest.TestCase):
             mr.run()
             self.assertFalse(mr.is_prime)
             
-class Primes_Test(unittest.TestCase):
+class TestPrimes(unittest.TestCase):
     def test_PrimeCount(self):
         """
         Testing the number of 100- primes (25) then 1000- primes (168)
