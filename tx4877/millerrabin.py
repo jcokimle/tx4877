@@ -92,8 +92,6 @@ class MillerRabin(object):
             self.step_by_step = False
         if hasattr(self, 'start_time'):
             self.log("Duration: %fs" % (time.time() - self.start_time))
-        else:
-            self.log("Duration: 0s")
 
     def log(self, msg, offset=0):
         '''

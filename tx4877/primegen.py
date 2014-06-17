@@ -67,7 +67,7 @@ class PrimeGen(object):
             if self.is_prime:
                 self.step_by_step = False
                 self.is_over = True
-                self.log("%d is Prime => End" % (self.cand), offset * 2)
+                self.log("%d is Prime => End" % (self.cand))
                 self.log("Duration: %fs" % (time.time() - self.start_time))
             elif not self.is_prime:
                 self.log("%d is Composite => Continue" % (self.cand), offset * 2)

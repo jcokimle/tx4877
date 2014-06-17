@@ -17,7 +17,7 @@ except AttributeError:
         return s
 
 
-class MainWindow(QMainWindow):
+class Main(QMainWindow):
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
 
@@ -149,6 +149,6 @@ class MainWindow(QMainWindow):
 
 if __name__=="__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = Main()
     window.show()
     sys.exit(app.exec_())
